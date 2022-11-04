@@ -1,8 +1,12 @@
 package com.maeng0830.stockdividend.web;
 
 import com.maeng0830.stockdividend.model.Company;
+import com.maeng0830.stockdividend.persist.entity.CompanyEntity;
 import com.maeng0830.stockdividend.service.CompanyService;
+import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,8 +30,10 @@ public class CompanyController {
     }
 
     @GetMapping
-    public ResponseEntity<?> searchCompany() {
-        return null;
+    public ResponseEntity<?> searchCompany(final Pageable pageable) {
+        Page<CompanyEntity> companies = this.companyService.getAllCompany(pageable);
+
+        return ResponseEntity.ok(companies);
     }
 
     @PostMapping
