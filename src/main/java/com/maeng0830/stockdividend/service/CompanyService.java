@@ -17,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-@Service // service는 싱글톤으로 관리된다.
+@Service
 @AllArgsConstructor
 public class CompanyService {
 
