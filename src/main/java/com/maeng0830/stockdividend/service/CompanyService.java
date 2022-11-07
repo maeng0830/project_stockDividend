@@ -8,6 +8,7 @@ import com.maeng0830.stockdividend.persist.repository.CompanyRepository;
 import com.maeng0830.stockdividend.persist.repository.DividendRepository;
 import com.maeng0830.stockdividend.scraper.Scraper;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.Trie;
@@ -86,6 +87,20 @@ public class CompanyService {
 
     // trie를 이용한 자동완성
     public void deleteAutocompleteKeyword(String keyword) {
+
         this.trie.remove(keyword);
+    }
+
+    // 회사 정보 삭제
+    public String deleteCompany(String ticker) {
+        CompanyEntity company = this.companyRepository.findByTicker(ticker)
+            .orElseThrow(() -> new RuntimeException("존재하지 않는 회사입니다."));
+
+        this.dividendRepository.deleteAllByCompanyId(company.getId());
+        this.companyRepository.delete(company);
+
+        this.deleteAutocompleteKeyword(company.getName());
+
+        return company.getName();
     }
 }
