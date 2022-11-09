@@ -1,5 +1,6 @@
 package com.maeng0830.stockdividend.web;
 
+import com.maeng0830.stockdividend.exception.customException.EmptyTickerException;
 import com.maeng0830.stockdividend.model.Company;
 import com.maeng0830.stockdividend.model.constants.CacheKey;
 import com.maeng0830.stockdividend.persist.entity.CompanyEntity;
@@ -51,7 +52,7 @@ public class CompanyController {
     public ResponseEntity<?> addCompany(@RequestBody Company request) {
         String ticker = request.getTicker().trim();
         if (ObjectUtils.isEmpty(ticker)) {
-            throw  new RuntimeException("ticker is empty");
+            throw  new EmptyTickerException();
         }
 
         Company company = this.companyService.save(ticker);

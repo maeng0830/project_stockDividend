@@ -1,5 +1,8 @@
 package com.maeng0830.stockdividend.service;
 
+import com.maeng0830.stockdividend.exception.customException.AlreadyExistTickerException;
+import com.maeng0830.stockdividend.exception.customException.FailedToScrapTickerException;
+import com.maeng0830.stockdividend.exception.customException.NoCompanyException;
 import com.maeng0830.stockdividend.model.Company;
 import com.maeng0830.stockdividend.model.ScrapedResult;
 import com.maeng0830.stockdividend.persist.entity.CompanyEntity;
@@ -8,9 +11,9 @@ import com.maeng0830.stockdividend.persist.repository.CompanyRepository;
 import com.maeng0830.stockdividend.persist.repository.DividendRepository;
 import com.maeng0830.stockdividend.scraper.Scraper;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.Trie;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class CompanyService {
@@ -31,7 +35,7 @@ public class CompanyService {
     public Company save(String ticker) {
         boolean exists = this.companyRepository.existsByTicker(ticker);
         if (exists) {
-            throw new RuntimeException("already exists ticker -> " + ticker);
+            throw new AlreadyExistTickerException();
         }
 
         return this.storeCompanyAndDividend(ticker);
@@ -46,10 +50,11 @@ public class CompanyService {
         Company company = this.yahooFinanceScraper.scrapCompanyByTicker(ticker);
 
         if (ObjectUtils.isEmpty(company)) {
-            throw new RuntimeException("failed to scrap ticker -> " + ticker);
+            throw new FailedToScrapTickerException();
         }
 
         // 회사가 존재할 경우, 회사의 배당금 정보를 스크래핑
+        log.info("scraping dividend ->" + company.getName());
         ScrapedResult scrapedResult = this.yahooFinanceScraper.scrap(company);
 
         // 스크래핑 결과
@@ -94,8 +99,9 @@ public class CompanyService {
     // 회사 정보 삭제
     public String deleteCompany(String ticker) {
         CompanyEntity company = this.companyRepository.findByTicker(ticker)
-            .orElseThrow(() -> new RuntimeException("존재하지 않는 회사입니다."));
+            .orElseThrow(() -> new NoCompanyException());
 
+        log.info("delete company and dividend -> " + company.getName());
         this.dividendRepository.deleteAllByCompanyId(company.getId());
         this.companyRepository.delete(company);
 

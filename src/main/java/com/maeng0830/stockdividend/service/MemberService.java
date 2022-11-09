@@ -1,5 +1,8 @@
 package com.maeng0830.stockdividend.service;
 
+import com.maeng0830.stockdividend.exception.customException.AlreadyExistUserException;
+import com.maeng0830.stockdividend.exception.customException.IncorrectMemberIdException;
+import com.maeng0830.stockdividend.exception.customException.IncorrectMemberPasswordException;
 import com.maeng0830.stockdividend.model.Auth;
 import com.maeng0830.stockdividend.persist.entity.MemberEntity;
 import com.maeng0830.stockdividend.persist.repository.MemberRepository;
@@ -28,22 +31,24 @@ public class MemberService implements UserDetailsService {
     public MemberEntity register(Auth.SignUp member) {
         boolean exists = this.memberRepository.existsByUsername(member.getUsername());
         if (exists) {
-            throw new RuntimeException("이미 사용 중인 아이디 입니다.");
+            throw new AlreadyExistUserException();
         }
 
         member.setPassword(this.passwordEncoder.encode(member.getPassword()));
 
+        log.info("success register member ->" + member.getUsername());
         return this.memberRepository.save(member.toEntity());
     }
 
     public MemberEntity authenticate(Auth.SignIn member) {
         MemberEntity user = this.memberRepository.findByUsername(member.getUsername())
-            .orElseThrow(() -> new RuntimeException("존재하지 않는 ID 입니다."));
+            .orElseThrow(() -> new IncorrectMemberIdException());
 
         if (!this.passwordEncoder.matches(member.getPassword(), user.getPassword())) {
-            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+            throw new IncorrectMemberPasswordException();
         }
 
+        log.info("success auth member ->" + member.getUsername());
         return user;
     }
 }

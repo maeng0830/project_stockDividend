@@ -1,0 +1,38 @@
+2022-11-08 10:18:51.548 [main] INFO  c.m.s.StockdividendApplication - Starting StockdividendApplication using Java 11.0.12 on DESKTOP-SMKFDAV with PID 20612 (C:\intellij-project\stockdividend\build\classes\java\main started by admin in C:\intellij-project\stockdividend)
+2022-11-08 10:18:51.551 [main] INFO  c.m.s.StockdividendApplication - No active profile set, falling back to 1 default profile: "default"
+2022-11-08 10:18:52.162 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-08 10:18:52.165 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-08 10:18:52.339 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 167 ms. Found 3 JPA repository interfaces.
+2022-11-08 10:18:52.352 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-08 10:18:52.353 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-11-08 10:18:52.370 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.maeng0830.stockdividend.persist.repository.CompanyRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-11-08 10:18:52.371 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.maeng0830.stockdividend.persist.repository.DividendRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-11-08 10:18:52.372 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.maeng0830.stockdividend.persist.repository.MemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2022-11-08 10:18:52.372 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+2022-11-08 10:18:53.070 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-11-08 10:18:53.080 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-11-08 10:18:53.080 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2022-11-08 10:18:53.080 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-08 10:18:53.216 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-11-08 10:18:53.216 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1627 ms
+2022-11-08 10:18:53.248 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-11-08 10:18:53.472 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-11-08 10:18:53.481 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:stockdividend'
+2022-11-08 10:18:53.666 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-08 10:18:53.726 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-08 10:18:53.899 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-08 10:18:54.032 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-11-08 10:18:54.570 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-08 10:18:54.577 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-08 10:18:54.970 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-08 10:18:55.317 [main] WARN  o.s.s.c.a.web.builders.WebSecurity - You are asking Spring Security to ignore Ant [pattern='/h2-console/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2022-11-08 10:18:55.318 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will not secure Ant [pattern='/h2-console/**']
+2022-11-08 10:18:55.339 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@43d2c8e3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8bb5c2a, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b9f7087, org.springframework.security.web.header.HeaderWriterFilter@2db75e32, org.springframework.security.web.authentication.logout.LogoutFilter@1188e08b, com.maeng0830.stockdividend.security.JwtAuthenticationFilter@84eafc2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30a79476, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@207f7baa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a9d572, org.springframework.security.web.session.SessionManagementFilter@35599228, org.springframework.security.web.access.ExceptionTranslationFilter@44cab872, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@58fadccb]
+2022-11-08 10:18:55.752 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-11-08 10:18:55.772 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-08 10:18:55.783 [main] INFO  c.m.s.StockdividendApplication - Started StockdividendApplication in 4.681 seconds (JVM running for 5.054)
+2022-11-08 10:19:51.300 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-08 10:19:51.301 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-11-08 10:19:51.302 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2022-11-08 10:20:01.425 [http-nio-8080-exec-3] INFO  c.m.stockdividend.web.AuthController - user login -> aaaaa
+2022-11-08 10:20:20.819 [http-nio-8080-exec-4] INFO  c.m.s.s.JwtAuthenticationFilter - [aaaaa] -> /company

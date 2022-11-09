@@ -1,5 +1,6 @@
 package com.maeng0830.stockdividend.service;
 
+import com.maeng0830.stockdividend.exception.customException.NoCompanyException;
 import com.maeng0830.stockdividend.model.Company;
 import com.maeng0830.stockdividend.model.Dividend;
 import com.maeng0830.stockdividend.model.ScrapedResult;
@@ -30,7 +31,7 @@ public class FinanceService {
         log.info("search company -> " + companyName);
         // 1. 회사명을 기준으로 회사 정보를 조회
         CompanyEntity company = this.companyRepository.findByName(companyName)
-            .orElseThrow(() -> new RuntimeException("존재하지 않는 회사명입니다."));
+            .orElseThrow(() -> new NoCompanyException());
 
         // 2. 회사 아이디를 통해 배당금 조회
 
